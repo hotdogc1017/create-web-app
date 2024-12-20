@@ -263,7 +263,19 @@ async function init() {
 
   const { framework, overwrite, packageName, variant } = result
 
-  const root = path.join(cwd, targetDir)
+  let root = path.join(cwd, targetDir)
+
+  // 本项目的根目录
+  const currentRoot = path.resolve(
+    fileURLToPath(import.meta.url),
+    '../..',
+  )
+
+  // 调试模式
+  if (argv.debug === 'full') {
+    const testOutDir = path.join(currentRoot, ".output", packageName || getProjectName())
+    root = testOutDir;
+  }
 
   if (overwrite === 'yes') {
     emptyDir(root)
@@ -321,12 +333,6 @@ async function init() {
 
   console.log(`\n工程项目在 ${root}...`)
 
-  // 本项目的根目录
-  const currentRoot = path.resolve(
-    fileURLToPath(import.meta.url),
-    '../..',
-  )
-
   const templateDir = path.join(
     currentRoot,
     `template-${template}`,
@@ -337,10 +343,6 @@ async function init() {
 
   const write = (file: string, content?: string) => {
     let targetPath = path.join(root, renameFiles[file] ?? file)
-
-    if (argv.debug === 'full') {
-      targetPath = path.join(currentRoot, "test-out")
-    }
 
     if (content) {
       fs.writeFileSync(targetPath, content)
@@ -426,7 +428,7 @@ function isEmpty(path: string) {
 }
 
 function isValidDir(dir: string) {
-  return !(!fs.existsSync(dir) || isEmpty(dir))
+  return fs.existsSync(dir) && !isEmpty(dir)
 }
 
 /**
