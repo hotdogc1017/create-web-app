@@ -1,6 +1,8 @@
 {
   "name": "@hotdogc1017/create-web-app",
-  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "1.0.0-beta.7",
   "type": "module",
   "license": "MIT",
