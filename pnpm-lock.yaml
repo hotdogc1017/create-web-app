@@ -26,6 +26,9 @@ importers:
       picocolors:
         specifier: ^1.1.1
         version: 1.1.1
+      pnpm:
+        specifier: ^9.15.1
+        version: 9.15.1
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -869,6 +872,11 @@ packages:
 
   pkg-types@1.2.1:
     resolution: {integrity: sha512-sQoqa8alT3nHjGuTjuKgOnvjo4cljkufdtLMnO2LBP/wRwuDlo1tkaEdMxCRhyGRPacv/ztlZgDPm2b7FAmEvw==}
+
+  pnpm@9.15.1:
+    resolution: {integrity: sha512-GstWXmGT7769p3JwKVBGkVDPErzHZCYudYfnHRncmKQj3/lTblfqRMSb33kP9pToPCe+X6oj1n4MAztYO+S/zw==}
+    engines: {node: '>=18.12'}
+    hasBin: true
 
   postcss-calc@10.0.2:
     resolution: {integrity: sha512-DT/Wwm6fCKgpYVI7ZEWuPJ4az8hiEHtCUeYjZXqU7Ou4QqYh1Df2yCQ7Ca6N7xqKPFkxN3fhf+u9KSoOCJNAjg==}
@@ -1936,6 +1944,8 @@ snapshots:
       confbox: 0.1.8
       mlly: 1.7.3
       pathe: 1.1.2
+
+  pnpm@9.15.1: {}
 
   postcss-calc@10.0.2(postcss@8.4.49):
     dependencies:

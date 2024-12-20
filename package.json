@@ -19,12 +19,16 @@
     "dev": "unbuild --stub",
     "build": "unbuild",
     "typecheck": "tsc --noEmit",
+    "test:help": "pnpm run --silent unbuild --stub;node index.js -h",
+    "test:prompt": "pnpm run --silent unbuild --stub;node index.js --debug=prompts",
+    "test:full": "pnpm run --silent unbuild --stub;node index.js --debug=full",
     "bumpp": "bumpp"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hotdogc1017/create-web-app.git"
   },
+  "packageManager": "pnpm@9.0.0",
   "bugs": {
     "url": "https://github.com/hotdogc1017/create-web-app/issues"
   },
@@ -36,6 +40,7 @@
     "cross-spawn": "^7.0.6",
     "minimist": "^1.2.8",
     "picocolors": "^1.1.1",
+    "pnpm": "^9.15.1",
     "prompts": "^2.4.2",
     "unbuild": "^3.0.1"
   }

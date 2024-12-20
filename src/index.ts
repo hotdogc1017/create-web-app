@@ -19,11 +19,10 @@ const {
   yellow,
 } = colors
 
-// Avoids autoconversion to number of the project name by defining that the args
-// non associated with an option ( _ ) needs to be parsed as a string. See #4606
 const argv = minimist<{
   template?: string
   help?: boolean
+  debug?: "prompts" | "full"
 }>(process.argv.slice(2), {
   default: { help: false },
   alias: { h: 'help', t: 'template' },
@@ -31,26 +30,20 @@ const argv = minimist<{
 })
 const cwd = process.cwd()
 
-// prettier-ignore
 const helpMessage = `\
-Usage: create-vite [OPTION]... [DIRECTORY]
+用法: 
+  create-web-app [选项]... [目录]
 
-Create a new Vite project in JavaScript or TypeScript.
-With no arguments, start the CLI in interactive mode.
+创建一个新的 Vite 项目，使用 JavaScript 或 TypeScript。
+不带参数选项时，启动 CLI 并进入交互模式。
 
-Options:
-  -t, --template NAME        use a specific template
+参数选项:
+  -t, --template 模板名称        使用指定的模板
 
-Available templates:
-${yellow    ('vanilla-ts     vanilla'  )}
-${green     ('vue-ts         vue'      )}
-${cyan      ('react-ts       react'    )}
-${cyan      ('react-swc-ts   react-swc')}
-${magenta   ('preact-ts      preact'   )}
-${redBright ('lit-ts         lit'      )}
-${red       ('svelte-ts      svelte'   )}
-${blue      ('solid-ts       solid'    )}
-${blueBright('qwik-ts        qwik'     )}`
+可用的模板:
+${green('vue-ts         vue')}
+${cyan('react-ts       react')}
+`
 
 type ColorFunc = (str: string | number) => string
 type Framework = {
@@ -68,23 +61,6 @@ type FrameworkVariant = {
 
 const FRAMEWORKS: Framework[] = [
   {
-    name: 'vanilla',
-    display: 'Vanilla',
-    color: yellow,
-    variants: [
-      {
-        name: 'vanilla-ts',
-        display: 'TypeScript',
-        color: blue,
-      },
-      {
-        name: 'vanilla',
-        display: 'JavaScript',
-        color: yellow,
-      },
-    ],
-  },
-  {
     name: 'vue',
     display: 'Vue',
     color: green,
@@ -101,7 +77,7 @@ const FRAMEWORKS: Framework[] = [
       },
       {
         name: 'custom-create-vue',
-        display: 'Customize with create-vue ↗',
+        display: '使用create-vue自定义 ↗',
         color: green,
         customCommand: 'npm create vue@latest TARGET_DIR',
       },
@@ -124,18 +100,8 @@ const FRAMEWORKS: Framework[] = [
         color: blue,
       },
       {
-        name: 'react-swc-ts',
-        display: 'TypeScript + SWC',
-        color: blue,
-      },
-      {
         name: 'react',
         display: 'JavaScript',
-        color: yellow,
-      },
-      {
-        name: 'react-swc',
-        display: 'JavaScript + SWC',
         color: yellow,
       },
       {
@@ -147,138 +113,10 @@ const FRAMEWORKS: Framework[] = [
     ],
   },
   {
-    name: 'preact',
-    display: 'Preact',
-    color: magenta,
-    variants: [
-      {
-        name: 'preact-ts',
-        display: 'TypeScript',
-        color: blue,
-      },
-      {
-        name: 'preact',
-        display: 'JavaScript',
-        color: yellow,
-      },
-      {
-        name: 'custom-create-preact',
-        display: 'Customize with create-preact ↗',
-        color: magenta,
-        customCommand: 'npm create preact@latest TARGET_DIR',
-      },
-    ],
-  },
-  {
-    name: 'lit',
-    display: 'Lit',
-    color: redBright,
-    variants: [
-      {
-        name: 'lit-ts',
-        display: 'TypeScript',
-        color: blue,
-      },
-      {
-        name: 'lit',
-        display: 'JavaScript',
-        color: yellow,
-      },
-    ],
-  },
-  {
-    name: 'svelte',
-    display: 'Svelte',
-    color: red,
-    variants: [
-      {
-        name: 'svelte-ts',
-        display: 'TypeScript',
-        color: blue,
-      },
-      {
-        name: 'svelte',
-        display: 'JavaScript',
-        color: yellow,
-      },
-      {
-        name: 'custom-svelte-kit',
-        display: 'SvelteKit ↗',
-        color: red,
-        customCommand: 'npm exec sv create TARGET_DIR',
-      },
-    ],
-  },
-  {
-    name: 'solid',
-    display: 'Solid',
-    color: blue,
-    variants: [
-      {
-        name: 'solid-ts',
-        display: 'TypeScript',
-        color: blue,
-      },
-      {
-        name: 'solid',
-        display: 'JavaScript',
-        color: yellow,
-      },
-    ],
-  },
-  {
-    name: 'qwik',
-    display: 'Qwik',
-    color: blueBright,
-    variants: [
-      {
-        name: 'qwik-ts',
-        display: 'TypeScript',
-        color: blueBright,
-      },
-      {
-        name: 'qwik',
-        display: 'JavaScript',
-        color: yellow,
-      },
-      {
-        name: 'custom-qwik-city',
-        display: 'QwikCity ↗',
-        color: blueBright,
-        customCommand: 'npm create qwik@latest basic TARGET_DIR',
-      },
-    ],
-  },
-  {
-    name: 'angular',
-    display: 'Angular',
-    color: red,
-    variants: [
-      {
-        name: 'custom-angular',
-        display: 'Angular ↗',
-        color: red,
-        customCommand: 'npm exec @angular/cli@latest new TARGET_DIR',
-      },
-      {
-        name: 'custom-analog',
-        display: 'Analog ↗',
-        color: yellow,
-        customCommand: 'npm create analog@latest TARGET_DIR',
-      },
-    ],
-  },
-  {
     name: 'others',
     display: 'Others',
     color: reset,
     variants: [
-      {
-        name: 'create-vite-extra',
-        display: 'create-vite-extra ↗',
-        color: reset,
-        customCommand: 'npm create vite-extra@latest TARGET_DIR',
-      },
       {
         name: 'create-electron-vite',
         display: 'create-electron-vite ↗',
@@ -289,7 +127,7 @@ const FRAMEWORKS: Framework[] = [
   },
 ]
 
-const TEMPLATES = FRAMEWORKS.map((f) => f.variants.map((v) => v.name)).reduce(
+const TEMPLATES = FRAMEWORKS.map(({ variants }) => variants.map(({ name }) => name)).reduce(
   (a, b) => a.concat(b),
   [],
 )
@@ -298,14 +136,13 @@ const renameFiles: Record<string, string | undefined> = {
   _gitignore: '.gitignore',
 }
 
-const defaultTargetDir = 'vite-project'
+const defaultTargetDir = 'web-app-project'
 
 async function init() {
   const argTargetDir = formatTargetDir(argv._[0])
   const argTemplate = argv.template || argv.t
 
-  const help = argv.help
-  if (help) {
+  if (argv.help) {
     console.log(helpMessage)
     return
   }
@@ -327,7 +164,7 @@ async function init() {
         {
           type: argTargetDir ? null : 'text',
           name: 'projectName',
-          message: reset('Project name:'),
+          message: reset('项目名称:'),
           initial: defaultTargetDir,
           onState: (state) => {
             targetDir = formatTargetDir(state.value) || defaultTargetDir
@@ -335,25 +172,25 @@ async function init() {
         },
         {
           type: () =>
-            !fs.existsSync(targetDir) || isEmpty(targetDir) ? null : 'select',
+            isValidDir(targetDir) ? 'select' : null,
           name: 'overwrite',
           message: () =>
             (targetDir === '.'
-              ? 'Current directory'
-              : `Target directory "${targetDir}"`) +
-            ` is not empty. Please choose how to proceed:`,
+              ? '当前目录'
+              : `目标 "${targetDir}"`) +
+            ` 不为空, 接下来?`,
           initial: 0,
           choices: [
             {
-              title: 'Cancel operation',
+              title: '取消操作',
               value: 'no',
             },
             {
-              title: 'Remove existing files and continue',
+              title: '移除存在的文件并继续',
               value: 'yes',
             },
             {
-              title: 'Ignore files and continue',
+              title: '忽略已存在的文件并继续',
               value: 'ignore',
             },
           ],
@@ -361,7 +198,7 @@ async function init() {
         {
           type: (_, { overwrite }: { overwrite?: string }) => {
             if (overwrite === 'no') {
-              throw new Error(red('✖') + ' Operation cancelled')
+              throw new Error(red('✖') + ' 操作已取消')
             }
             return null
           },
@@ -370,10 +207,10 @@ async function init() {
         {
           type: () => (isValidPackageName(getProjectName()) ? null : 'text'),
           name: 'packageName',
-          message: reset('Package name:'),
+          message: reset('包名:'),
           initial: () => toValidPackageName(getProjectName()),
           validate: (dir) =>
-            isValidPackageName(dir) || 'Invalid package.json name',
+            isValidPackageName(dir) || `无效名称, ${dir} 不是有效包名`,
         },
         {
           type:
@@ -382,14 +219,15 @@ async function init() {
           message:
             typeof argTemplate === 'string' && !TEMPLATES.includes(argTemplate)
               ? reset(
-                  `"${argTemplate}" isn't a valid template. Please choose from below: `,
-                )
-              : reset('Select a framework:'),
+                `"${argTemplate}" 不是一个有效的模板。请从以下选项中选择: `,
+              )
+              : reset('选择一个模板:'),
+          // 默认选中第一个
           initial: 0,
           choices: FRAMEWORKS.map((framework) => {
-            const frameworkColor = framework.color
+            const { color, display, name } = framework
             return {
-              title: frameworkColor(framework.display || framework.name),
+              title: color(display || name),
               value: framework,
             }
           }),
@@ -398,20 +236,17 @@ async function init() {
           type: (framework: Framework | /* package name */ string) =>
             typeof framework === 'object' ? 'select' : null,
           name: 'variant',
-          message: reset('Select a variant:'),
-          choices: (framework: Framework) =>
-            framework.variants.map((variant) => {
-              const variantColor = variant.color
-              return {
-                title: variantColor(variant.display || variant.name),
-                value: variant.name,
-              }
-            }),
+          message: reset('选择一个变体模版:'),
+          choices: ({ variants }: Framework) =>
+            variants.map(({ color, display, name }) => ({
+              title: color(display || name),
+              value: name,
+            })),
         },
       ],
       {
         onCancel: () => {
-          throw new Error(red('✖') + ' Operation cancelled')
+          throw new Error(red('✖') + ' 操作已取消')
         },
       },
     )
@@ -420,7 +255,12 @@ async function init() {
     return
   }
 
-  // user choice associated with prompts
+  // 用于调试`prompts`的输出
+  if (argv.debug === 'prompts') {
+    console.log('\n调试结果:', result)
+    return;
+  }
+
   const { framework, overwrite, packageName, variant } = result
 
   const root = path.join(cwd, targetDir)
@@ -431,20 +271,14 @@ async function init() {
     fs.mkdirSync(root, { recursive: true })
   }
 
-  // determine template
   let template: string = variant || framework?.name || argTemplate
-  let isReactSwc = false
-  if (template.includes('-swc')) {
-    isReactSwc = true
-    template = template.replace('-swc', '')
-  }
 
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
   const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
   const isYarn1 = pkgManager === 'yarn' && pkgInfo?.version.startsWith('1.')
 
   const { customCommand } =
-    FRAMEWORKS.flatMap((f) => f.variants).find((v) => v.name === template) ?? {}
+    FRAMEWORKS.flatMap(({ variants }) => variants).find(({ name }) => name === template) ?? {}
 
   if (customCommand) {
     const fullCustomCommand = customCommand
@@ -485,16 +319,29 @@ async function init() {
     process.exit(status ?? 0)
   }
 
-  console.log(`\nScaffolding project in ${root}...`)
+  console.log(`\n工程项目在 ${root}...`)
 
-  const templateDir = path.resolve(
+  // 本项目的根目录
+  const currentRoot = path.resolve(
     fileURLToPath(import.meta.url),
     '../..',
-    `template-${template}`,
   )
 
+  const templateDir = path.join(
+    currentRoot,
+    `template-${template}`,
+  )
+  if (!isValidDir(templateDir)) {
+    throw new Error(`[内部异常]无效的模板: ${template}`)
+  }
+
   const write = (file: string, content?: string) => {
-    const targetPath = path.join(root, renameFiles[file] ?? file)
+    let targetPath = path.join(root, renameFiles[file] ?? file)
+
+    if (argv.debug === 'full') {
+      targetPath = path.join(currentRoot, "test-out")
+    }
+
     if (content) {
       fs.writeFileSync(targetPath, content)
     } else {
@@ -515,16 +362,11 @@ async function init() {
 
   write('package.json', JSON.stringify(pkg, null, 2) + '\n')
 
-  if (isReactSwc) {
-    setupReactSwc(root, template.endsWith('-ts'))
-  }
-
   const cdProjectName = path.relative(cwd, root)
-  console.log(`\nDone. Now run:\n`)
+  console.log(`\n完成! 运行以下命令启动你的项目:\n`)
   if (root !== cwd) {
     console.log(
-      `  cd ${
-        cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName
+      `  cd ${cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName
       }`,
     )
   }
@@ -583,6 +425,13 @@ function isEmpty(path: string) {
   return files.length === 0 || (files.length === 1 && files[0] === '.git')
 }
 
+function isValidDir(dir: string) {
+  return !(!fs.existsSync(dir) || isEmpty(dir))
+}
+
+/**
+ * 删除指定目录下的所有文件.
+ */
 function emptyDir(dir: string) {
   if (!fs.existsSync(dir)) {
     return
@@ -603,21 +452,6 @@ function pkgFromUserAgent(userAgent: string | undefined) {
     name: pkgSpecArr[0],
     version: pkgSpecArr[1],
   }
-}
-
-function setupReactSwc(root: string, isTs: boolean) {
-  editFile(path.resolve(root, 'package.json'), (content) => {
-    return content.replace(
-      /"@vitejs\/plugin-react": ".+?"/,
-      `"@vitejs/plugin-react-swc": "^3.5.0"`,
-    )
-  })
-  editFile(
-    path.resolve(root, `vite.config.${isTs ? 'ts' : 'js'}`),
-    (content) => {
-      return content.replace('@vitejs/plugin-react', '@vitejs/plugin-react-swc')
-    },
-  )
 }
 
 function editFile(file: string, callback: (content: string) => string) {
