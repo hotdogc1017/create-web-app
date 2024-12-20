@@ -5,8 +5,7 @@
   "license": "MIT",
   "author": "hotdogc1017",
   "bin": {
-    "create-vite": "index.js",
-    "cva": "index.js"
+    "create-web-app": "index.js"
   },
   "files": [
     "index.js",
