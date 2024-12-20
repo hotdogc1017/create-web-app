@@ -1,6 +1,6 @@
 # Create Web App
 
-> 从[create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite)获得灵感来源
+> 核心代码大部分来自于[create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite)
 
 ## 项目简介
 这是一个用于创建Web应用程序的项目模板。它包含了基本的文件结构和配置，帮助你快速启动一个新的Web项目。
