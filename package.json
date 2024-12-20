@@ -30,13 +30,11 @@
   "devDependencies": {
     "@types/minimist": "^1.2.5",
     "@types/prompts": "^2.4.9",
+    "bumpp": "^9.9.1",
     "cross-spawn": "^7.0.6",
     "minimist": "^1.2.8",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2",
     "unbuild": "^3.0.1"
-  },
-  "dependencies": {
-    "bumpp": "^9.9.1"
   }
 }
