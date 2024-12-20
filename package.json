@@ -19,9 +19,9 @@
     "dev": "unbuild --stub",
     "build": "unbuild",
     "typecheck": "tsc --noEmit",
-    "test:help": "pnpm run --silent unbuild --stub;node index.js -h",
-    "test:prompt": "pnpm run --silent unbuild --stub;node index.js --debug=prompts",
-    "test:full": "pnpm run --silent unbuild --stub;node index.js --debug=full",
+    "test:help": "unbuild --stub && node index.js -h",
+    "test:prompt": "unbuild --stub && node index.js --debug=prompts",
+    "test:full": "unbuild --stub && node index.js --debug=full",
     "bumpp": "bumpp"
   },
   "repository": {
