@@ -3,45 +3,53 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.0-beta.9",
   "type": "module",
-  "license": "MIT",
+  "version": "1.0.0-beta.9",
+  "packageManager": "pnpm@9.0.0",
   "author": "hotdogc1017",
-  "bin": {
-    "create-web-app": "index.js"
-  },
-  "files": [
-    "index.js",
-    "template-*",
-    "dist"
-  ],
-  "scripts": {
-    "dev": "unbuild --stub",
-    "build": "unbuild",
-    "typecheck": "tsc --noEmit",
-    "test:help": "unbuild --stub && node index.js -h",
-    "test:prompt": "unbuild --stub && node index.js --debug=prompts",
-    "test:full": "unbuild --stub && node index.js --debug=full",
-    "bumpp": "bumpp"
-  },
+  "license": "MIT",
+  "homepage": "https://github.com/hotdogc1017/create-web-app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hotdogc1017/create-web-app.git"
   },
-  "packageManager": "pnpm@9.0.0",
   "bugs": {
     "url": "https://github.com/hotdogc1017/create-web-app/issues"
   },
-  "homepage": "https://github.com/hotdogc1017/create-web-app",
+  "bin": {
+    "create-web-app": "index.js"
+  },
+  "files": [
+    "dist",
+    "index.js",
+    "template-*"
+  ],
+  "scripts": {
+    "dev": "unbuild --stub",
+    "build": "unbuild",
+    "lint:fix": "eslint --fix .",
+    "typecheck": "tsc --noEmit",
+    "bumpp": "bumpp",
+    "clean": "rimraf dist node_modules **/node_modules",
+    "test:help": "unbuild --stub && node index.js -h",
+    "test:prompt": "unbuild --stub && node index.js --debug=prompts",
+    "test:full": "unbuild --stub && node index.js --debug=full"
+  },
+  "dependencies": {
+    "@antfu/eslint-config": "^3.12.0"
+  },
   "devDependencies": {
+    "@antfu/eslint-config": "^3.12.0",
     "@types/minimist": "^1.2.5",
     "@types/prompts": "^2.4.9",
     "bumpp": "^9.9.1",
     "cross-spawn": "^7.0.6",
+    "eslint": "^9.16.0",
     "minimist": "^1.2.8",
     "picocolors": "^1.1.1",
     "pnpm": "^9.15.1",
     "prompts": "^2.4.2",
+    "rimraf": "^6.0.1",
     "unbuild": "^3.0.1",
     "vite": "^6.0.5"
   }
