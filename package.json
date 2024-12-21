@@ -27,6 +27,7 @@
   "scripts": {
     "dev": "unbuild --stub",
     "build": "unbuild",
+    "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "typecheck": "tsc --noEmit",
     "bumpp": "bumpp",
