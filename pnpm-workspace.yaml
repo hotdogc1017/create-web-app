@@ -1,2 +1,3 @@
-packages: 
-  - 'template-react'
+packages:
+  - template-react
+  - template-react-ts
