@@ -5,6 +5,8 @@
 ## 项目简介
 这是一个用于创建现代Web应用程序的项目模板。它从`create-vite`项目中衍生而来，拓展了[更多](#功能特性)实用的开发工具。
 
+> 目前仅支持 Vite + React(TS)，后续计划支持更多的脚手架工具(eg. [Rspack](https://github.com/web-infra-dev/rspack))和语言框架(Vue - 下个进度)
+
 ## 使用
 
 ```bash
@@ -26,7 +28,6 @@ npm bumpp
 npm run lint
 npm run lint:fix
 ```
-
 
 #### [rimraf](https://github.com/isaacs/rimraf#readme)
 快速删除文件和文件夹
