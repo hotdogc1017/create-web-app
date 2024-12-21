@@ -71,11 +71,6 @@ const FRAMEWORKS: Framework[] = [
         color: blue,
       },
       {
-        name: 'vue',
-        display: 'JavaScript',
-        color: yellow,
-      },
-      {
         name: 'custom-create-vue',
         display: '使用create-vue自定义 ↗',
         color: green,
