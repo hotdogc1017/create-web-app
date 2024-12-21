@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 签出代码
+        uses: actions/checkout@v2
+
+      - name: 设置nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 运行构建
+        run: npm run build
+
+      - name: 生成changelog
+        run: npx changelogithub
+        env:
+            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

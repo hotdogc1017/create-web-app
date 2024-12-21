@@ -96,7 +96,7 @@ const FRAMEWORKS: Framework[] = [
       },
       {
         name: 'react',
-        display: 'JavaScript',
+        display: 'JavaScript[不推荐]',
         color: yellow,
       },
       {
