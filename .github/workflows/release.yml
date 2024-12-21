@@ -11,7 +11,9 @@ jobs:
 
     steps:
       - name: 签出代码
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: 设置nodejs
         uses: actions/setup-node@v2
@@ -28,7 +30,6 @@ jobs:
       - name: 生成changelog
         run: npx changelogithub
         env:
-          fetch-depth: 0
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: 发布到npm
