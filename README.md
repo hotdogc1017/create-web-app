@@ -1,54 +1,41 @@
 # Create Web App
 
-> 核心代码大部分来自于[create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite)
+> 核心代码来自于[create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite)
 
 ## 项目简介
-这是一个用于创建Web应用程序的项目模板。它包含了基本的文件结构和配置，帮助你快速启动一个新的Web项目。
+这是一个用于创建现代Web应用程序的项目模板。它从`create-vite`项目中衍生而来，拓展了[更多](#功能特性)实用的开发工具。
+
+## 使用
+
+```bash
+npx @hotdogc1017/create-web-app
+```
 
 ## 功能特性
-- 简单易用的项目结构
-- 预配置的开发环境
-- 支持热重载
-- 集成了常用的工具和库
 
-## 安装与使用
-### 克隆仓库
+### 实用工具
+#### [bumpp](https://github.com/antfu/bumpp)
+自动更新版本号, 严格遵循[语义化版本规范](https://semver.org/)
 ```bash
-git clone https://github.com/hotdogc1017/create-web-app.git
-cd create-web-app
+npm bumpp
 ```
 
-### 安装依赖
+#### [@antfu/eslint-config](https://github.com/antfu/eslint-config)
+代码检查与格式化一体的ESLint配置
 ```bash
-npm install
+npm run lint
+npm run lint:fix
 ```
 
-### 启动开发服务器
+
+#### [rimraf](https://github.com/isaacs/rimraf#readme)
+快速删除文件和文件夹
 ```bash
-npm start
+npm run clean
 ```
 
-### 构建项目
-```bash
-npm run build
-```
-
-## 目录结构
-```
-create-web-app/
-├── public/
-│   ├── index.html
-│   └── ...
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── App.js
-│   ├── index.js
-│   └── ...
-├── .gitignore
-├── package.json
-└── README.md
-```
+### 预配置
+ - GitHub Workflows: 在推送代码到仓库时会自动生成changelog, 由[changelogithub](https://github.com/antfu/changelogithub)驱动
 
 ## 贡献指南
 欢迎任何形式的贡献！请阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解更多信息。
