@@ -25,6 +25,11 @@ jobs:
       - name: 运行构建
         run: npm run build
 
+      - name: 生成changelog
+        run: npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
       - name: 发布到npm
         run: npm publish
         env:
