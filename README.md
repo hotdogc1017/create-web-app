@@ -1,5 +1,7 @@
 # Create Web App
 
+[English](README-EN.md)
+
 > 核心代码来自于[create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite)
 
 ## 项目简介
