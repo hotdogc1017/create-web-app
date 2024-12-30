@@ -11,8 +11,21 @@
 
 ## 使用
 
+创建项目
 ```bash
 npx @hotdogc1017/create-web-app
+```
+
+> 如果要从当前目录创建项目，在提示输入项目名称时，直接回车即可
+
+查看帮助
+```bash
+npx @hotdogc1017/create-web-app --help # or -h
+```
+
+查看版本
+```bash
+npx @hotdogc1017/create-web-app --version # or -v
 ```
 
 ## 功能特性
@@ -44,4 +57,5 @@ npm run clean
 欢迎任何形式的贡献！请阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解更多信息。
 
 ## 许可证
-本项目采用 [MIT 许可证](LICENSE)。
+本项目采用 [Apache-2.0 许可证](LICENSE)。
+

@@ -1,4 +1,4 @@
-# Create Web App
+# Create Web App [![Release](https://github.com/hotdogc1017/create-web-app/actions/workflows/release.yml/badge.svg)](https://github.com/hotdogc1017/create-web-app/actions/workflows/release.yml)
 
 [简体中文](README.md)
 
@@ -11,8 +11,21 @@ This is a project template for creating modern web applications. It is derived f
 
 ## Usage
 
+Create project
 ```bash
 npx @hotdogc1017/create-web-app
+```
+
+> To create a project from the current directory, simply press Enter when prompted for the project name
+
+View help
+```bash
+npx @hotdogc1017/create-web-app --help # or -h
+```
+
+View version
+```bash
+npx @hotdogc1017/create-web-app --version # or -v
 ```
 
 ## Features
@@ -44,4 +57,4 @@ npm run clean
 Any form of contribution is welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
 
 ## License
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [Apache-2.0 License](LICENSE).
