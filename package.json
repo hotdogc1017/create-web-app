@@ -33,6 +33,7 @@
     "typecheck": "tsc --noEmit",
     "bumpp": "bumpp",
     "clean": "rimraf dist node_modules **/node_modules",
+    "test:version": "unbuild --stub && node index.js -v",
     "test:help": "unbuild --stub && node index.js -h",
     "test:prompt": "unbuild --stub && node index.js --debug=prompts",
     "test:full": "unbuild --stub && node index.js --debug=full"
