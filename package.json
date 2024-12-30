@@ -38,9 +38,6 @@
     "test:prompt": "unbuild --stub && node index.js --debug=prompts",
     "test:full": "unbuild --stub && node index.js --debug=full"
   },
-  "dependencies": {
-    "@antfu/eslint-config": "^3.12.0"
-  },
   "devDependencies": {
     "@antfu/eslint-config": "^3.12.0",
     "@types/minimist": "^1.2.5",
