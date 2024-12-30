@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import pkgJSON from "../package.json"
 import spawn from 'cross-spawn'
 import minimist from 'minimist'
 import prompts from 'prompts'
@@ -144,9 +145,6 @@ async function init() {
   }
 
   if (argv.version) {
-    const pkgJSON = JSON.parse(
-      fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8'),
-    )
     console.log(pkgJSON.version)
     return
   }
