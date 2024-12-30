@@ -18,6 +18,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: 打印工作目录和文件结构
+        run: |
+          pwd
+          ls -R
+
       - name: 设置nodejs
         uses: actions/setup-node@v2
         with:
@@ -34,6 +39,9 @@ jobs:
         run: npx changelogithub
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: 预览发布内容
+        run: npm pack
 
       - name: 发布到npm
         run: npm publish
