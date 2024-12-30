@@ -20,11 +20,6 @@
   "bin": {
     "create-web-app": "index.js"
   },
-  "files": [
-    "dist",
-    "index.js",
-    "template-*"
-  ],
   "scripts": {
     "dev": "unbuild --stub",
     "build": "unbuild",
