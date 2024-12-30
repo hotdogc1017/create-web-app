@@ -1,4 +1,4 @@
-# Create Web App
+# Create Web App [![Release](https://github.com/hotdogc1017/create-web-app/actions/workflows/release.yml/badge.svg)](https://github.com/hotdogc1017/create-web-app/actions/workflows/release.yml)
 
 [English](README-EN.md)
 
