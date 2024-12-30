@@ -7,8 +7,6 @@
 ## Project Introduction
 This is a project template for creating modern web applications. It is derived from the `create-vite` project and extends [more](#features) useful development tools.
 
-> Currently only supports Vite + React(TS), with plans to support more scaffolding tools (e.g., [Rspack](https://github.com/web-infra-dev/rspack)) and frameworks (Vue - next progress)
-
 ## Usage
 
 Create project
