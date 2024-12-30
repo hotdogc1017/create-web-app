@@ -22,10 +22,11 @@ const {
 const argv = minimist<{
   template?: string
   help?: boolean
+  version?: boolean
   debug?: "prompts" | "full"
 }>(process.argv.slice(2), {
   default: { help: false },
-  alias: { h: 'help', t: 'template' },
+  alias: { h: 'help', t: 'template', v: 'version' },
   string: ['_'],
 })
 const cwd = process.cwd()
@@ -139,6 +140,14 @@ async function init() {
 
   if (argv.help) {
     console.log(helpMessage)
+    return
+  }
+
+  if (argv.version) {
+    const pkgJSON = JSON.parse(
+      fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8'),
+    )
+    console.log(pkgJSON.version)
     return
   }
 
