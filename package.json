@@ -1,7 +1,8 @@
 {
   "name": "@hotdogc1017/create-web-app",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "type": "module",
   "version": "1.1.1",
