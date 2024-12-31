@@ -20,7 +20,7 @@
   "bin": {
     "create-web-app": "index.js"
   },
-  "files": ["dist", "index.js", "template-*"],
+  "files": ["dist", "index.js", "template-vue-ts", "template-react", "template-react-ts"],
   "scripts": {
     "dev": "unbuild --stub",
     "build": "unbuild",
