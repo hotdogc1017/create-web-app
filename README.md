@@ -11,19 +11,19 @@
 
 创建项目
 ```bash
-npx @hotdogc1017/create-web-app
+npx @hotdogc1017/create-web-app@latest
 ```
 
 > 如果要从当前目录创建项目，在提示输入项目名称时，直接回车即可
 
 查看帮助
 ```bash
-npx @hotdogc1017/create-web-app --help # or -h
+npx @hotdogc1017/create-web-app@latest --help # or -h
 ```
 
 查看版本
 ```bash
-npx @hotdogc1017/create-web-app --version # or -v
+npx @hotdogc1017/create-web-app@latest --version # or -v
 ```
 
 ## 功能特性

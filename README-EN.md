@@ -11,19 +11,19 @@ This is a project template for creating modern web applications. It is derived f
 
 Create project
 ```bash
-npx @hotdogc1017/create-web-app
+npx @hotdogc1017/create-web-app@latest
 ```
 
 > To create a project from the current directory, simply press Enter when prompted for the project name
 
 View help
 ```bash
-npx @hotdogc1017/create-web-app --help # or -h
+npx @hotdogc1017/create-web-app@latest --help # or -h
 ```
 
 View version
 ```bash
-npx @hotdogc1017/create-web-app --version # or -v
+npx @hotdogc1017/create-web-app@latest --version # or -v
 ```
 
 ## Features
