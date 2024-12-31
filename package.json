@@ -20,6 +20,7 @@
   "bin": {
     "create-web-app": "index.js"
   },
+  "files": ["dist", "index.js", "template-*"],
   "scripts": {
     "dev": "unbuild --stub",
     "build": "unbuild",
@@ -28,6 +29,7 @@
     "typecheck": "tsc --noEmit",
     "bumpp": "bumpp",
     "clean": "rimraf dist node_modules **/node_modules",
+    "prepublishOnly": "npm run build",
     "test:version": "unbuild && node index.js -v",
     "test:help": "unbuild && node index.js -h",
     "test:prompt": "unbuild && node index.js --debug=prompts",
