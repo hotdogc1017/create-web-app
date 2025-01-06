@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
 
       - name: 设置nodejs
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
