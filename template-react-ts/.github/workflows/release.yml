@@ -24,12 +24,6 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: 安装依赖
-        run: npm install
-
-      - name: 运行构建
-        run: npm run build
-
       - name: 生成changelog
         run: npx changelogithub
         env:
